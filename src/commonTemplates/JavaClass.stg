@@ -1,0 +1,43 @@
+JavaClassRaw(packageName, className, classTypeParameterDefinitions, classTypeParameterNames, extendClassName, implementClassNames) ::= <<
+$className$$if(classTypeParameterDefinitions)$<$classTypeParameterDefinitions; separator=", "$>$endif$$if(extendClassName)$ extends $extendClassName$$endif$$if(implementClassNames)$ implements $implementClassNames:{x | $x$}; separator=", "$$endif$ {
+$@classFields()$
+
+
+$@code()$
+
+\}
+>>
+
+
+JavaClassRawFromObject(javaClassVar) ::= <<
+$JavaClassRaw(javaClassVar.packageName, javaClassVar.className, javaClassVar.classTypeParameterDefinitions, javaClassVar.classTypeParameterNames, javaClassVar.extendClassName, javaClassVar.implementClassNames)$
+>>
+
+
+JavaClass(packageName, classAccessModifier, classType, className, classTypeParameterDefinitions, classTypeParameterNames, extendClassName, implementClassNames) ::= <<
+package $packageName$;
+
+$@importStatements()$
+
+$@classJavaDoc()$
+$@classAnnotations()$
+$classAccessModifier$$if(classType)$ $classType$$endif$ $className$$if(classTypeParameterDefinitions)$<$classTypeParameterDefinitions; separator=", "$>$endif$$if(extendClassName)$ extends $extendClassName$$endif$$if(implementClassNames)$ implements $implementClassNames:{x | $x$}; separator=", "$$endif$ {
+$@classFields()$
+
+
+$@code()$
+
+\}
+
+>>
+
+
+JavaClassFromObject(classAccessModifier, classType, javaClassVar) ::= <<
+$JavaClass(javaClassVar.packageName, classAccessModifier, classType, javaClassVar.className, javaClassVar.classTypeParameterDefinitions, javaClassVar.classTypeParameterNames, javaClassVar.extendClassName, javaClassVar.implementClassNames)$
+>>
+
+ClassExtendImplement(javaClassVar) ::= <<$if(javaClassVar.extendClassName)$extends $javaClassVar.extendClassName$$endif$$if(javaClassVar.implementClassNames)$$if(javaClassVar.extendClassName)$ $endif$implements $javaClassVar.implementClassNames:{x | $x$}; separator=", "$$endif$>>
+
+ClassTypeDefinition(javaClassVar) ::= <<$javaClassVar.className$$if(javaClassVar.classTypeParameterDefinitions)$<$javaClassVar.classTypeParameterDefinitions; separator=", "$>$endif$$if(javaClassVar.extendClassName)$ extends $javaClassVar.extendClassName$$endif$$if(javaClassVar.implementClassNames)$ implements $javaClassVar.implementClassNames:{x | $x$}; separator=", "$$endif$>>
+
+ClassType(javaClassVar) ::= <<$javaClassVar.className$$if(javaClassVar.classTypeParameterNames)$<$javaClassVar.classTypeParameterNames; separator=", "$>$endif$>>

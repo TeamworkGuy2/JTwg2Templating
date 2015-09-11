@@ -1,0 +1,33 @@
+TemplateExample(var) ::= <<
+package test;
+
+import java.io.IOException;
+
+/**
+ * @author TeamworkGuy2
+ * @since 2014-12-19
+ */
+public class TemplateExample {
+$var:{x | 	$x.type$ $x.name$;
+}$
+
+	public TemplateExample($var:{x | $x.type$ $x.name$}; separator=", "$) {
+		$var:{x | this.$x.name$ = $x.name$;
+}$	}
+
+
+	public Runnable toAction(final Appendable out) {
+		return () -> {
+			try {
+				out.append(type[0].toString(name[0]));
+				out.append(" '");
+				out.append(type[1].toString(name[1]));
+				out.append('\'');
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		};
+	}
+
+}
+>>

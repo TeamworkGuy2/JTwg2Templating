@@ -1,0 +1,207 @@
+TPrimitiveTemplates(var) ::= <<
+package codeTemplate;
+
+import java.util.List;
+import typeInfo.JavaPrimitives;
+
+/** Basic {@link ClassTemplate} templates for primitive Java types.<br>
+ * e.g. boolean, byte, char, etc.
+ * @author TeamworkGuy2
+ * @since 2014-12-30
+ */
+@javax.annotation.Generated("StringTemplate")
+public final class PrimitiveTemplates {
+
+	private PrimitiveTemplates() { throw new AssertionError("cannot instantiate static class PrimitiveTemplates"); \}
+
+$var.types:{info |
+	public static final ClassTemplateBuilder<PrimitiveClassTemplateDeprecated> new$info.type.typeShortTitleCase$TemplateBuilder(String className, String packageName) {
+		return ClassTemplateBuilder.newTemplateBuilder(new$info.type.typeShortTitleCase$Template(className, packageName));
+	\}
+
+
+	public static final <T extends PrimitiveClassTemplateDeprecated> ClassTemplateBuilder<PrimitiveClassTemplateDeprecated> new$info.type.typeShortTitleCase$TemplateBuilder(T t, String className, String packageName) {
+		return ClassTemplateBuilder.newTemplateBuilder(new$info.type.typeShortTitleCase$Template(t, className, packageName));
+	\}
+
+
+	public static final PrimitiveClassTemplateDeprecated new$info.type.typeShortTitleCase$Template(String className) {
+		return new$info.type.typeShortTitleCase$Template(className, null);
+	\}
+
+
+	public static final PrimitiveClassTemplateDeprecated new$info.type.typeShortTitleCase$Template(String className, String packageName) {
+		return new$info.type.typeShortTitleCase$Template(new PrimitiveClassTemplateDeprecated(), className, packageName);
+	\}
+
+
+	public static final <T extends PrimitiveClassTemplateDeprecated> T new$info.type.typeShortTitleCase$Template(T t, String className, String packageName) {
+		setupClassTemplate(t, className, packageName);
+		setup$info.type.typeShortTitleCase$Template(t);
+		return t;
+	\}
+
+
+	public static final <T extends PrimitiveTypeInfo> T setup$info.type.typeShortTitleCase$Template(T t) {
+		$info.templateBuilderSetupLines:{line | $line$
+		}$		return t;
+	\}
+
+
+}$	public static final ClassTemplateBuilder<PrimitiveClassTemplateDeprecated> newPrimitiveTemplateBuilder(Class<?> primitiveType, String className, String packageName) {
+		return ClassTemplateBuilder.newTemplateBuilder(newPrimitiveTemplate(primitiveType, className, packageName));
+	\}
+
+
+	public static final <T extends PrimitiveClassTemplateDeprecated> ClassTemplateBuilder<PrimitiveClassTemplateDeprecated> newPrimitiveTemplateBuilder(Class<?> primitiveType, T t, String className, String packageName) {
+		return ClassTemplateBuilder.newTemplateBuilder(newPrimitiveTemplate(primitiveType, t, className, packageName));
+	\}
+
+
+	public static final PrimitiveClassTemplateDeprecated newPrimitiveTemplate(Class<?> primitiveType, String className) {
+		return newPrimitiveTemplate(primitiveType, className, null);
+	\}
+
+
+	public static final PrimitiveClassTemplateDeprecated newPrimitiveTemplate(Class<?> primitiveType, String className, String packageName) {
+		return newPrimitiveTemplate(primitiveType, new PrimitiveClassTemplateDeprecated(), className, packageName);
+	\}
+
+
+	public static final <T extends PrimitiveClassTemplateDeprecated> T newPrimitiveTemplate(Class<?> type, T t, String className, String packageName) {
+		if(type == Boolean.TYPE || type == Boolean.class) {
+			PrimitiveTemplates.newBooleanTemplate(t, className, packageName);
+		\}
+		else if(type == Byte.TYPE || type == Byte.class) {
+			PrimitiveTemplates.newByteTemplate(t, className, packageName);
+		\}
+		else if(type == Character.TYPE || type == Character.class) {
+			PrimitiveTemplates.newCharTemplate(t, className, packageName);
+		\}
+		else if(type == Short.TYPE || type == Short.class) {
+			PrimitiveTemplates.newShortTemplate(t, className, packageName);
+		\}
+		else if(type == Integer.TYPE || type == Integer.class) {
+			PrimitiveTemplates.newIntTemplate(t, className, packageName);
+		\}
+		else if(type == Float.TYPE || type == Float.class) {
+			PrimitiveTemplates.newFloatTemplate(t, className, packageName);
+		\}
+		else if(type == Long.TYPE || type == Long.class) {
+			PrimitiveTemplates.newLongTemplate(t, className, packageName);
+		\}
+		else if(type == Double.TYPE || type == Double.class) {
+			PrimitiveTemplates.newDoubleTemplate(t, className, packageName);
+		\}
+		else {
+			throw new IllegalArgumentException("unknown primitive type for class template: " + type);
+		\}
+
+		return t;
+	\}
+
+
+	public static final void setupClassTemplate(ClassInfo t, String className, String packageName) {
+		t.setClassName(className);
+		t.setPackageName(packageName);
+	\}
+
+
+	public static final <T extends PrimitiveTypeInfo> T setupPrimitiveTypeInfo(Class<?> type, T t) {
+		if(type == Boolean.TYPE || type == Boolean.class) {
+			PrimitiveTemplates.setupBooleanTemplate(t);
+		\}
+		else if(type == Byte.TYPE || type == Byte.class) {
+			PrimitiveTemplates.setupByteTemplate(t);
+		\}
+		else if(type == Character.TYPE || type == Character.class) {
+			PrimitiveTemplates.setupCharTemplate(t);
+		\}
+		else if(type == Short.TYPE || type == Short.class) {
+			PrimitiveTemplates.setupShortTemplate(t);
+		\}
+		else if(type == Integer.TYPE || type == Integer.class) {
+			PrimitiveTemplates.setupIntTemplate(t);
+		\}
+		else if(type == Float.TYPE || type == Float.class) {
+			PrimitiveTemplates.setupFloatTemplate(t);
+		\}
+		else if(type == Long.TYPE || type == Long.class) {
+			PrimitiveTemplates.setupLongTemplate(t);
+		\}
+		else if(type == Double.TYPE || type == Double.class) {
+			PrimitiveTemplates.setupDoubleTemplate(t);
+		\}
+		else {
+			throw new IllegalArgumentException("unknown primitive type for class template: " + type);
+		\}
+
+		return t;
+	\}
+
+
+	/** Replace {@code "\$type\$"\} with {@link PrimitiveClassTemplateDeprecated#typeShort\}
+	 * and {@code "\$Type\$"\} with {@link PrimitiveClassTemplateDeprecated#typeShortTitleCase\}
+	 * in a template's: {@link ClassTemplate#className className\}, {@link ClassTemplate#extendClassName extendClassName\},
+	 * and {@link ClassTemplate#implementClassNames implementClassNames\} properties.
+	 * Useful for creating and reusing generic type templates for multiple primitive types
+	 * @param t the template object to check and replace the specified strings in
+	 * @return the original {@code t\} argument object
+	 */
+	public static final <T extends PrimitiveClassTemplateDeprecated> T inferPropertyNames(T t) {
+		inferPropertyNames(t, t, "\$type\$", "\$Type\$");
+		return t;
+	\}
+
+
+	public static final void inferPropertyNames(ClassInfo classInfo, PrimitiveTypeInfo primitiveInfo) {
+		inferPropertyNames(classInfo, primitiveInfo, "\$type\$", "\$Type\$");
+	\}
+
+
+	public static final String inferPropertyName(String name, JavaPrimitives type) {
+		return replaceTypeName(name, type, "\$type\$", "\$Type\$");
+	\}
+
+
+	public static final void inferPropertyNames(ClassInfo classInfo, PrimitiveTypeInfo primitiveInfo, String typeShortMarker, String typeShortUpperCaseMarker) {
+		if(classInfo.getClassName() != null) {
+			classInfo.setClassName(replaceTypeName(classInfo.getClassName(), primitiveInfo, typeShortMarker, typeShortUpperCaseMarker));
+		\}
+		if(classInfo.getExtendClassName() != null) {
+			classInfo.setExtendClassName(replaceTypeName(classInfo.getExtendClassName(), primitiveInfo, typeShortMarker, typeShortUpperCaseMarker));
+		\}
+		if(classInfo.getImplementClassNames() != null) {
+			List<String> implementsNames = classInfo.getImplementClassNames();
+			for(int i = 0, size = implementsNames.size(); i < size; i++) {
+				implementsNames.set(i, replaceTypeName(implementsNames.get(i), primitiveInfo, typeShortMarker, typeShortUpperCaseMarker));
+			\}
+		\}
+	\}
+
+
+	public static final <T extends PrimitiveTypeInfo> String replaceTypeName(String name, T t, String typeShortMarker, String typeShortUpperCaseMarker) {
+		name = name.replace(typeShortMarker, t.getTypeShort());
+		name = name.replace(typeShortUpperCaseMarker, t.getTypeShortTitleCase());
+		return name;
+	\}
+
+
+	public static final String replaceTypeName(String name, JavaPrimitives type, String typeShortMarker, String typeShortUpperCaseMarker) {
+		name = name.replace(typeShortMarker, type.getShortName());
+		name = name.replace(typeShortUpperCaseMarker, type.getShortTitleCaseName());
+		return name;
+	\}
+
+
+	private static final <T extends PrimitiveTypeInfo> T setTypeInfo(T t, JavaPrimitives primitiveType) {
+		t.setTypeClass(primitiveType.getType());
+		t.setType(primitiveType.getJavaPrimitiveName());
+		t.setObjectType(primitiveType.getJavaObjectName());
+		t.setTypeShort(primitiveType.getShortName());
+		t.setTypeShortTitleCase(primitiveType.getShortTitleCaseName());
+		return t;
+	\}
+
+\}
+>>
