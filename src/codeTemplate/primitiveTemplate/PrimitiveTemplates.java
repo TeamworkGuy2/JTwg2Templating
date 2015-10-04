@@ -1,6 +1,6 @@
 package codeTemplate.primitiveTemplate;
 
-import twg2.primitiveIoTypes.JavaPrimitive;
+import twg2.primitiveIoTypes.JPrimitiveType;
 import codeTemplate.ClassInfo;
 import codeTemplate.ClassTemplate;
 
@@ -34,7 +34,7 @@ public final class PrimitiveTemplates {
 
 
 	public static final <T extends PrimitiveTypeInfo> T setupBooleanTemplate(T t) {
-		setTypeInfo(t, JavaPrimitive.BOOLEAN);
+		setTypeInfo(t, JPrimitiveType.BOOLEAN);
 		t.setDefaultValue("false");
 		t.setAggregatable(false);
 		return t;
@@ -66,7 +66,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Byte.MAX_VALUE");
 		t.setMinValue("Byte.MIN_VALUE");
 		t.setSumType("int");
-		setTypeInfo(t, JavaPrimitive.BYTE);
+		setTypeInfo(t, JPrimitiveType.BYTE);
 		return t;
 	}
 
@@ -96,7 +96,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Short.MAX_VALUE");
 		t.setMinValue("Short.MIN_VALUE");
 		t.setSumType("int");
-		setTypeInfo(t, JavaPrimitive.SHORT);
+		setTypeInfo(t, JPrimitiveType.SHORT);
 		return t;
 	}
 
@@ -126,7 +126,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Character.MAX_VALUE");
 		t.setMinValue("Character.MIN_VALUE");
 		t.setSumType("int");
-		setTypeInfo(t, JavaPrimitive.CHAR);
+		setTypeInfo(t, JPrimitiveType.CHAR);
 		return t;
 	}
 
@@ -156,7 +156,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Integer.MAX_VALUE");
 		t.setMinValue("Integer.MIN_VALUE");
 		t.setSumType("int");
-		setTypeInfo(t, JavaPrimitive.INT);
+		setTypeInfo(t, JPrimitiveType.INT);
 		return t;
 	}
 
@@ -186,7 +186,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Float.MAX_VALUE");
 		t.setMinValue("Float.MIN_VALUE");
 		t.setSumType("float");
-		setTypeInfo(t, JavaPrimitive.FLOAT);
+		setTypeInfo(t, JPrimitiveType.FLOAT);
 		return t;
 	}
 
@@ -216,7 +216,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Long.MAX_VALUE");
 		t.setMinValue("Long.MIN_VALUE");
 		t.setSumType("long");
-		setTypeInfo(t, JavaPrimitive.LONG);
+		setTypeInfo(t, JPrimitiveType.LONG);
 		return t;
 	}
 
@@ -246,7 +246,7 @@ public final class PrimitiveTemplates {
 		t.setMaxValue("Double.MAX_VALUE");
 		t.setMinValue("Double.MIN_VALUE");
 		t.setSumType("double");
-		setTypeInfo(t, JavaPrimitive.DOUBLE);
+		setTypeInfo(t, JPrimitiveType.DOUBLE);
 		return t;
 	}
 
@@ -333,7 +333,7 @@ public final class PrimitiveTemplates {
 	}
 
 
-	private static final <T extends PrimitiveTypeInfo> T setTypeInfo(T t, JavaPrimitive primitiveType) {
+	private static final <T extends PrimitiveTypeInfo> T setTypeInfo(T t, JPrimitiveType primitiveType) {
 		t.setTypeClass(primitiveType.getType());
 		t.setType(primitiveType.getJavaPrimitiveName());
 		t.setObjectType(primitiveType.getJavaObjectName());

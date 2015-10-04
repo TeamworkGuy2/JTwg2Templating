@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import stringUtils.StringCheck;
-import stringUtils.StringJoin;
+import twg2.text.stringUtils.StringCheck;
+import twg2.text.stringUtils.StringJoin;
 
 /**
  * @author TeamworkGuy2

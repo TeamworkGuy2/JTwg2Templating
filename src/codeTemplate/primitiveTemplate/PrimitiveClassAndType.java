@@ -1,10 +1,10 @@
 package codeTemplate.primitiveTemplate;
 
-import codeTemplate.ClassInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import codeTemplate.ClassInfo;
 
 /**
  * @author TeamworkGuy2

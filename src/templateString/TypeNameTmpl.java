@@ -1,13 +1,13 @@
 package templateString;
 
-import twg2.primitiveIoTypes.JavaPrimitive;
+import twg2.primitiveIoTypes.JPrimitiveType;
 import codeTemplate.NameFormat;
 
 /**
  * @author TeamworkGuy2
  * @since 2015-5-31
  */
-public class TypeNameTmpl extends TemplateStringBuilder<NameFormat> implements TemplateString<JavaPrimitive> {
+public class TypeNameTmpl extends TemplateStringBuilder<NameFormat> implements TemplateString<JPrimitiveType> {
 
 	public TypeNameTmpl() {
 		super(NameFormat.class);
@@ -15,7 +15,7 @@ public class TypeNameTmpl extends TemplateStringBuilder<NameFormat> implements T
 
 
 	@Override
-	public String toString(JavaPrimitive t) {
+	public String toString(JPrimitiveType t) {
 		StringBuilder strB = new StringBuilder();
 		super.forEach((str) -> strB.append(str), (elem) -> strB.append(NameFormat.getFromPrimitiveType(elem, t)));
 		return strB.toString();

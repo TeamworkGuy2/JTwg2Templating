@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import templateString.TypeNameTmpl;
-import twg2.primitiveIoTypes.JavaPrimitive;
+import twg2.primitiveIoTypes.JPrimitiveType;
 import codeTemplate.NameFormat;
 
 /**
@@ -17,8 +17,8 @@ public class TemplateStringTest {
 	public void testTemplateString() {
 		TypeNameTmpl typeStr = new TypeNameTmpl();
 		typeStr.and(NameFormat.SHORT_UPPER).and("Object");
-		Assert.assertEquals("ByteObject", typeStr.toString(JavaPrimitive.BYTE));
-		Assert.assertEquals("BooleanObject", typeStr.toString(JavaPrimitive.BOOLEAN));
+		Assert.assertEquals("ByteObject", typeStr.toString(JPrimitiveType.BYTE));
+		Assert.assertEquals("BooleanObject", typeStr.toString(JPrimitiveType.BOOLEAN));
 	}
 
 }

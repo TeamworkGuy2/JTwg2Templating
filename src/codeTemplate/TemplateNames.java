@@ -3,7 +3,7 @@ package codeTemplate;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import twg2.primitiveIoTypes.JavaPrimitive;
+import twg2.primitiveIoTypes.JPrimitiveType;
 import codeTemplate.primitiveTemplate.PrimitiveTypeClassTemplate;
 
 /**
@@ -37,7 +37,7 @@ public class TemplateNames {
 	}
 
 
-	public static final String inferClassName(String name, JavaPrimitive type) {
+	public static final String inferClassName(String name, JPrimitiveType type) {
 		return replaceTypeName(name, type, "$type$", "$Type$");
 	}
 
@@ -130,7 +130,7 @@ public class TemplateNames {
 	}
 
 
-	public static final String replaceTypeName(String name, JavaPrimitive type, String typeShortMarker, String typeShortUpperCaseMarker) {
+	public static final String replaceTypeName(String name, JPrimitiveType type, String typeShortMarker, String typeShortUpperCaseMarker) {
 		name = name.replace(typeShortMarker, type.getShortName());
 		name = name.replace(typeShortUpperCaseMarker, type.getShortTitleCaseName());
 		return name;

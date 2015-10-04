@@ -1,7 +1,6 @@
 package codeTemplate;
 
-import twg2.primitiveIoTypes.JavaPrimitive;
-
+import twg2.primitiveIoTypes.JPrimitiveType;
 
 /**
  * @author TeamworkGuy2
@@ -16,7 +15,7 @@ public enum NameFormat {
 	JAVA_OBJECT;
 
 
-	public static final String getFromPrimitiveType(NameFormat fmt, JavaPrimitive type) {
+	public static final String getFromPrimitiveType(NameFormat fmt, JPrimitiveType type) {
 		switch(fmt) {
 		case FULL:
 			return type.getFullName();

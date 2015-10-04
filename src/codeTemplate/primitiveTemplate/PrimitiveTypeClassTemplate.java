@@ -1,8 +1,8 @@
 package codeTemplate.primitiveTemplate;
 
-import codeTemplate.ClassTemplate;
 import lombok.Getter;
 import lombok.Setter;
+import codeTemplate.ClassTemplate;
 
 
 /** A basic template for {@code ANTLR StringTemplates}.
