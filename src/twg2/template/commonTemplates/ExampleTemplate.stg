@@ -1,0 +1,36 @@
+import "twg2/template/commonTemplates/JavaClass.stg"
+
+ExampleTemplate(var) ::= <<
+package $var.packageName$; // example of a template variable that is replaced by the value of var.packageName or var.getPackageName() depending on which is visible
+
+import java.util.Arrays;
+
+/**
+ * @author TeamworkGuy2
+ * @since
+ */
+@javax.annotation.Generated("StringTemplate")
+public final class $var.className$ {
+
+
+	private $var.className$() { throw new AssertionError("cannot instantiate static class $var.className$"); }
+
+
+$var.types:{ary | 	// example of a loop
+
+$if(ary.isGeneric)$	@SafeVarargs // example template if-statement
+$endif$	public static $if(ary.isGeneric)$$ary.genericSignature$ $endif$$ary.type$[] asArray($ary.type$... values) {
+		return values;
+	\} // must escape closing braces
+$if(ary.isAggregatable)$
+	// another example if
+$else$
+	// else portion of if
+$endif$
+
+
+}$ // end loop
+
+}
+
+>>
