@@ -114,7 +114,7 @@ public class GeneratePrimitiveTemplates {
 		tmpl.types = getGenTypes();
 
 		ST stTmpl = STTemplates.fromFile("src/twg2.template.templates/TPrimitiveTemplates.stg", "TPrimitiveTemplates", TemplateImports.emptyInst());
-		StringTemplatesUtil.renderClassTemplate(stTmpl, tmpl, "var", tmpl);
+		StringTemplatesUtil.renderClass(stTmpl, tmpl, "var", tmpl);
 	}
 
 

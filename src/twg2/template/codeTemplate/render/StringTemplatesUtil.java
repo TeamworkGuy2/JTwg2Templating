@@ -62,20 +62,18 @@ public class StringTemplatesUtil {
 
 
 	public static final ST stringTemplate(String templateFile, String templateSrc, String templateName, TemplateImports importsConverter) {
-		List<String> srcLines = Arrays.asList(templateSrc.split("\r\n"));
-		templateSrc = convertImports(srcLines.iterator(), importsConverter);
 		return stringTemplate(templateFile, templateSrc, templateName, importsConverter, null);
 	}
 
 
 	public static final ST stringTemplate(String templateFile, String templateSrc, String templateName, TemplateImports importsConverter, STErrorListener listener) {
-		List<String> srcLines = Arrays.asList(templateSrc.split("\r\n"));
-		templateSrc = convertImports(srcLines.iterator(), importsConverter);
 		return stringTemplate(templateFile, templateSrc, templateName, importsConverter, listener, '$', '$');
 	}
 
 
 	public static final ST stringTemplate(String templateFile, String templateSrc, String templateName, TemplateImports importsConverter, STErrorListener listener, char startDelimiter, char endDelimiter) {
+		List<String> srcLines = Arrays.asList(templateSrc.split("\r\n"));
+		templateSrc = convertImports(srcLines.iterator(), importsConverter);
 
 		STGroupStringFromFile stg = new STGroupStringFromFile(rootDir, new File(templateFile), templateSrc, startDelimiter, endDelimiter);
 
@@ -107,14 +105,14 @@ public class StringTemplatesUtil {
 	}
 
 
-	public static final <T> void writeArgTemplate(ST st, Appendable out, String argName, T arg) {
+	public static final <T> void writeArg(ST st, Appendable out, String argName, T arg) {
 		st.add(argName, arg);
 		render(st, out);
 		st.remove(argName);
 	}
 
 
-	public static final <T> void writeArgsTemplate(ST st, Appendable out, Map<String, ? extends T> args) {
+	public static final <T> void writeArgs(ST st, Appendable out, Map<String, ? extends T> args) {
 		for(Map.Entry<String, ? extends T> entry : args.entrySet()) {
 			st.add(entry.getKey(), entry.getValue());
 		}
@@ -128,7 +126,7 @@ public class StringTemplatesUtil {
 
 
 	@SafeVarargs
-	public static final <T> void writeArgsTemplate(ST st, Appendable out, Entry<String, ? extends T>... args) {
+	public static final <T> void writeArgs(ST st, Appendable out, Entry<String, ? extends T>... args) {
 		for(Map.Entry<String, ? extends Object> arg : args) {
 			st.add(arg.getKey(), arg.getValue());
 		}
@@ -138,13 +136,6 @@ public class StringTemplatesUtil {
 		for(Map.Entry<String, ? extends Object> arg : args) {
 			st.remove(arg.getKey());
 		}
-	}
-
-
-	@SafeVarargs
-	public static final void writeWithParameters(String fileName, String templateName, Appendable output, TemplateImports importMapper, Entry<String, ? extends Object>... params) {
-		ST st = StringTemplatesUtil.fileTemplate(fileName, templateName, importMapper);
-		writeArgsTemplate(st, output, params);
 	}
 
 
@@ -158,15 +149,15 @@ public class StringTemplatesUtil {
 	}
 
 
-	public static final <T extends ClassLocation> void renderClassTemplate(ST st, String paramName, T param) {
-		renderClassTemplate(st, param, paramName, param);
+	public static final <T extends ClassLocation> void renderClass(ST st, String paramName, T param) {
+		renderClass(st, param, paramName, param);
 	}
 
 
-	public static final void renderClassTemplate(ST st, ClassLocation locationInfo, String paramName, Object param) {
+	public static final void renderClass(ST st, ClassLocation locationInfo, String paramName, Object param) {
 		try {
 			Writer out = TemplateFilesIo.getDefaultInst().getSrcRelativeStream(locationInfo);
-			writeArgTemplate(st, out, paramName, param);
+			writeArg(st, out, paramName, param);
 			out.close();
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
@@ -174,10 +165,10 @@ public class StringTemplatesUtil {
 	}
 
 
-	public static final void renderClassTemplateArgs(ST st, ClassLocation locationInfo, Map<String, ? extends Object> args) {
+	public static final void renderClassArgs(ST st, ClassLocation locationInfo, Map<String, ? extends Object> args) {
 		try {
 			Writer out = TemplateFilesIo.getDefaultInst().getSrcRelativeStream(locationInfo);
-			writeArgsTemplate(st, out, args);
+			writeArgs(st, out, args);
 			out.close();
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
@@ -192,10 +183,11 @@ public class StringTemplatesUtil {
 			lines.add(line);
 		}
 
-		importsConverter.replaceImportLines(lines);
+		if(importsConverter != null) {
+			importsConverter.replaceImportLines(lines);
+		}
 
 		String templateStr = String.join("\r\n", lines);
-
 		return templateStr;
 	}
 

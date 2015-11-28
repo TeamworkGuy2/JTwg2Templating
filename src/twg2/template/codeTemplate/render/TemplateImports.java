@@ -17,18 +17,31 @@ public class TemplateImports {
 	private boolean trimImportAliasNameQuotes;
 
 
+	/**
+	 * @param trimImportAliasNameQuotes true to check if the import line contains a quote '"' and if so, split the
+	 * line at quotes '"' and using the portion inside quotes as the import name
+	 */
 	public TemplateImports(boolean trimImportAliasNameQuotes) {
 		this.importAliasesToFullPath = new HashMap<>();
 		this.trimImportAliasNameQuotes = trimImportAliasNameQuotes;
 	}
 
 
+	/**
+	 * @param importAliasesToFullPath
+	 * @param trimImportAliasNameQuotes true to check if the import line contains a quote '"' and if so, split the
+	 * line at quotes '"' and using the portion inside quotes as the import name
+	 */
 	public TemplateImports(Map<String, String> importAliasesToFullPath, boolean trimImportAliasNameQuotes) {
 		this.importAliasesToFullPath = importAliasesToFullPath;
 		this.trimImportAliasNameQuotes = trimImportAliasNameQuotes;
 	}
 
 
+	/** Replaces StringTemplate 'import' statements using this object's map of import aliases.
+	 * @param lines a list of strings containing StringTemplate style 'import' statement.
+	 * The import names/paths are replace with paths from this object's importAliasesToFullPath map
+	 */
 	public void replaceImportLines(List<String> lines) {
 		Map<Integer, String> importAliases = parseImportLines(lines, trimImportAliasNameQuotes);
 		for(Entry<Integer, String> aliasEntry : importAliases.entrySet()) {
@@ -42,13 +55,20 @@ public class TemplateImports {
 	}
 
 
+	/** Parses the import lines at the top of a StringTemplate .stg file
+	 * @param lines from a string template file (only the initial lines starting with 'import' are read).
+	 * NOTE: only one import is expected per line
+	 * @param trimImportAliasNameQuotes true to check if the import line contains a quote '"' and if so, split the
+	 * line at quotes '"' and using the portion inside quotes as the import name
+	 * @return a map of line numbers to import paths/names
+	 */
 	public static final Map<Integer, String> parseImportLines(List<String> lines, boolean trimImportAliasNameQuotes) {
 		Map<Integer, String> importLines = findImportLines(lines);
 		Map<Integer, String> importsParsed = new HashMap<>();
 
 		for(Entry<Integer, String> importLine : importLines.entrySet()) {
 			String importStr = importLine.getValue();
-			if(trimImportAliasNameQuotes) {
+			if(trimImportAliasNameQuotes && importStr.indexOf('"', 0) > -1) {
 				importStr = importStr.split("\"", 3)[1];
 			}
 			else {
