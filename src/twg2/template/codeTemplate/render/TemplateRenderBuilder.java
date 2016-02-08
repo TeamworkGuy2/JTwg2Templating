@@ -1,8 +1,13 @@
 package twg2.template.codeTemplate.render;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import lombok.Getter;
 
 import org.stringtemplate.v4.ST;
 
@@ -69,8 +74,9 @@ public class TemplateRenderBuilder {
 
 
 	public static class Builder implements SetDstBeforeParamsStep, SetParamsStep<Builder>, SetDstStep, SetParamsOrDstStep<Builder> {
-		private Map<String, Object> params = new HashMap<>();
-		private Appendable dst;
+		private @Getter Map<String, Object> params = new HashMap<>();
+		private @Getter Appendable dstStream;
+		private @Getter ClassLocation dstLocation;
 
 
 		public Builder() {
@@ -80,7 +86,8 @@ public class TemplateRenderBuilder {
 		public Builder copy() {
 			Builder copy = new Builder();
 			copy.params = new HashMap<>(this.params);
-			copy.dst = this.dst;
+			copy.dstStream = this.dstStream;
+			copy.dstLocation = this.dstLocation;
 			return copy;
 		}
 
@@ -98,11 +105,6 @@ public class TemplateRenderBuilder {
 
 		public Object getParam(String paramName) {
 			return this.params.get(paramName);
-		}
-
-
-		public Map<String, Object> getParams() {
-			return this.params;
 		}
 
 
@@ -129,21 +131,16 @@ public class TemplateRenderBuilder {
 		}
 
 
-		public Appendable getDst() {
-			return dst;
-		}
-
-
 		@Override
 		public Builder writeDst(ClassLocation locationInfo) {
-			this.dst = TemplateFilesIo.getDefaultInst().getSrcRelativeStream(locationInfo);
+			this.dstLocation = locationInfo;
 			return this;
 		}
 
 
 		@Override
 		public Builder writeDst(Appendable out) {
-			this.dst = out;
+			this.dstStream = out;
 			return this;
 		}
 
@@ -151,7 +148,27 @@ public class TemplateRenderBuilder {
 		public void render(ST template) {
 			params.forEach(template::add);
 
-			StringTemplatesUtil.render(template, dst);
+			if(this.dstStream != null) {
+				Appendable dst = this.dstStream;
+
+				StringTemplatesUtil.render(template, dst);
+			}
+			else if(this.dstLocation != null) {
+				Writer dst = TemplateFilesIo.getDefaultInst().getSrcRelativeStream(this.dstLocation);
+
+				try {
+					StringTemplatesUtil.render(template, dst);
+				} finally {
+					try {
+						dst.close();
+					} catch(IOException e) {
+						throw new UncheckedIOException(e);
+					}
+				}
+			}
+			else {
+				throw new IllegalStateException("cannot render template without destination");
+			}
 
 			params.keySet().forEach(template::remove);
 		}
