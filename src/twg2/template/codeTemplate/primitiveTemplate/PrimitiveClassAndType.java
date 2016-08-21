@@ -1,10 +1,10 @@
 package twg2.template.codeTemplate.primitiveTemplate;
 
-import twg2.template.codeTemplate.ClassInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import twg2.template.codeTemplate.ClassInfo;
 
 /**
  * @author TeamworkGuy2

@@ -1,6 +1,6 @@
 package twg2.template.codeTemplate;
 
-import twg2.primitiveIoTypes.JPrimitiveType;
+import twg2.simpleTypes.ioPrimitives.JPrimitiveType;
 
 /**
  * @author TeamworkGuy2

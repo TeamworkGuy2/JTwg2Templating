@@ -1,0 +1,12 @@
+{
+	"version" : "0.1.1",
+	"name" : "jtwg2-template",
+	"description" : "Java collection helpers for creating, filtering, and mapping lists, collections, maps, iterators, and streams",
+	"homepage" : "https://github.com/TeamworkGuy2/JTwg2Templating",
+	"license" : "MIT",
+	"main" : "./bin/jtwg2-template.jar",
+	"dependencies" : {
+		"jsimple-types" : "*",
+		"jtext-util" : "*"
+	}
+}

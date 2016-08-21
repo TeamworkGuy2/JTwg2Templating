@@ -3,7 +3,7 @@ package twg2.template.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import twg2.primitiveIoTypes.JPrimitiveType;
+import twg2.simpleTypes.ioPrimitives.JPrimitiveType;
 import twg2.template.codeTemplate.NameFormat;
 import twg2.template.templateString.TypeNameTmpl;
 

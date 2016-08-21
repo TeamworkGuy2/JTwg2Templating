@@ -3,7 +3,7 @@ package twg2.template.codeTemplate;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import twg2.primitiveIoTypes.JPrimitiveType;
+import twg2.simpleTypes.ioPrimitives.JPrimitiveType;
 import twg2.template.codeTemplate.primitiveTemplate.PrimitiveTypeClassTemplate;
 
 /**

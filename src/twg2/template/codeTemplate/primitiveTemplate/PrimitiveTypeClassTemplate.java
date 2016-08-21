@@ -1,8 +1,8 @@
 package twg2.template.codeTemplate.primitiveTemplate;
 
-import twg2.template.codeTemplate.ClassTemplate;
 import lombok.Getter;
 import lombok.Setter;
+import twg2.template.codeTemplate.ClassTemplate;
 
 
 /** A basic template for {@code ANTLR StringTemplates}.

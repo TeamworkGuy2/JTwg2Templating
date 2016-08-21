@@ -1,6 +1,6 @@
 package twg2.template.templateString;
 
-import twg2.primitiveIoTypes.JPrimitiveType;
+import twg2.simpleTypes.ioPrimitives.JPrimitiveType;
 import twg2.template.codeTemplate.NameFormat;
 
 /**

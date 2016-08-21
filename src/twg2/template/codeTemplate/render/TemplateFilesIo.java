@@ -8,9 +8,9 @@ import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import twg2.template.codeTemplate.ClassLocation;
 import lombok.Getter;
 import lombok.Setter;
+import twg2.template.codeTemplate.ClassLocation;
 
 /**
  * @author TeamworkGuy2
