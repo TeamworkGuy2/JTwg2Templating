@@ -1,7 +1,5 @@
 package twg2.template.commonTemplates;
 
-import lombok.Getter;
-
 /** Paths to common template files
  * @author TeamworkGuy2
  * @since 2015-10-10
@@ -9,10 +7,14 @@ import lombok.Getter;
 public final class CommonTemplateFiles {
 
 	public static final class TemplateFileInfo {
-		final @Getter String pathString;
+		final String pathString;
 
 		public TemplateFileInfo(String pathString) {
 			this.pathString = pathString;
+		}
+
+		public String getPathString() {
+			return pathString;
 		}
 
 	}

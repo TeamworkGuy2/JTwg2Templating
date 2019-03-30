@@ -1,15 +1,14 @@
 package twg2.template.codeTemplate.render;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import lombok.Getter;
-import lombok.Setter;
 import twg2.template.codeTemplate.ClassLocation;
 
 /**
@@ -19,7 +18,17 @@ import twg2.template.codeTemplate.ClassLocation;
 public class TemplateFilesIo {
 	private static TemplateFilesIo writeThrough = new TemplateFilesIo(true);
 	private static TemplateFilesIo compareWritten = new TemplateFilesIo(false);
-	private static @Getter @Setter boolean globalWriteFilesFlag = true;
+	private static boolean globalWriteFilesFlag = true;
+
+
+	public static final boolean isGlobalWriteFilesFlag() {
+		return globalWriteFilesFlag;
+	}
+
+
+	public static final void setGlobalWriteFilesFlag(boolean globalWriteFilesFlag) {
+		TemplateFilesIo.globalWriteFilesFlag = globalWriteFilesFlag;
+	}
 
 
 	public static final TemplateFilesIo getDefaultInst() {
@@ -105,17 +114,17 @@ public class TemplateFilesIo {
 
 	public void compareFileToString(Path path, CharSequence string) {
 		int bufSize = 4096;
-		FileReader reader = null;
+		InputStreamReader reader = null;
 		try {
-			reader = new FileReader(path.toString());
-			StringBuilder strB = new StringBuilder(bufSize);
+			reader = new InputStreamReader(new FileInputStream(path.toString()));
+			StringBuilder sb = new StringBuilder(bufSize);
 
 			char[] cbuf = new char[bufSize];
 			int read = 0;
 			while((read = reader.read(cbuf, 0, bufSize)) > -1) {
-				strB.append(cbuf, 0, read);
+				sb.append(cbuf, 0, read);
 			}
-			String fileContents = strB.toString();
+			String fileContents = sb.toString();
 			if(!string.equals(fileContents)) {
 				throw new RuntimeException("file '" + path + "' did not equal input string, length file=" + fileContents.length() + ", input string=" + string.length());
 			}

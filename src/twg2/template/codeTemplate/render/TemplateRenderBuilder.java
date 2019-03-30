@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import lombok.Getter;
-
 import org.stringtemplate.v4.ST;
 
 import twg2.template.codeTemplate.ClassInfo;
@@ -74,21 +72,27 @@ public class TemplateRenderBuilder {
 
 
 	public static class Builder implements SetDstBeforeParamsStep, SetParamsStep<Builder>, SetDstStep, SetParamsOrDstStep<Builder> {
-		private @Getter Map<String, Object> params = new HashMap<>();
-		private @Getter Appendable dstStream;
-		private @Getter ClassLocation dstLocation;
+		private Map<String, Object> params = new HashMap<>();
+		private Appendable dstStream;
+		private ClassLocation dstLocation;
 
 
 		public Builder() {
 		}
 
 
-		public Builder copy() {
-			Builder copy = new Builder();
-			copy.params = new HashMap<>(this.params);
-			copy.dstStream = this.dstStream;
-			copy.dstLocation = this.dstLocation;
-			return copy;
+		public Map<String, Object> getParams() {
+			return params;
+		}
+
+
+		public Appendable getDstStream() {
+			return dstStream;
+		}
+
+
+		public ClassLocation getDstLocation() {
+			return dstLocation;
 		}
 
 
@@ -128,6 +132,15 @@ public class TemplateRenderBuilder {
 		public Builder setParams(Map<String, Object> params) {
 			this.params = params;
 			return this;
+		}
+
+
+		public Builder copy() {
+			Builder copy = new Builder();
+			copy.params = new HashMap<>(this.params);
+			copy.dstStream = this.dstStream;
+			copy.dstLocation = this.dstLocation;
+			return copy;
 		}
 
 

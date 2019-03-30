@@ -1,19 +1,31 @@
 package twg2.template.codeTemplate.primitiveTemplate;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import twg2.template.codeTemplate.ClassInfo;
 
 /**
  * @author TeamworkGuy2
  * @since 2015-6-23
  */
-@NoArgsConstructor
-@AllArgsConstructor
 public class PrimitiveClassAndType {
-	public @Getter @Setter ClassInfo classInfo;
-	public @Getter @Setter PrimitiveTypeInfo typeInfo;
+	public ClassInfo classInfo;
+	public PrimitiveTypeInfo typeInfo;
+
+	public ClassInfo getClassInfo() { return classInfo; }
+
+	public void setClassInfo(ClassInfo classInfo) { this.classInfo = classInfo; }
+
+	public PrimitiveTypeInfo getTypeInfo() { return typeInfo; }
+
+	public void setTypeInfo(PrimitiveTypeInfo typeInfo) { this.typeInfo = typeInfo; }
+
+
+	public PrimitiveClassAndType() {
+	}
+
+
+	public PrimitiveClassAndType(ClassInfo classInfo, PrimitiveTypeInfo typeInfo) {
+		this.classInfo = classInfo;
+		this.typeInfo = typeInfo;
+	}
 
 }

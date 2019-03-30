@@ -1,8 +1,5 @@
 package twg2.template.codeTemplate;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * @author TeamworkGuy2
  * @since 2015-8-28
@@ -10,10 +7,26 @@ import lombok.Setter;
 public interface HasTypeName {
 
 	public static class Impl implements HasTypeName {
-		public @Getter @Setter String type;
-		public @Getter @Setter String typeShort;
-		public @Getter @Setter String typeShortTitleCase;
-		public @Getter @Setter String objectType;
+		public String type;
+		public String typeShort;
+		public String typeShortTitleCase;
+		public String objectType;
+
+		@Override public String getType() { return type; }
+
+		@Override public void setType(String type) { this.type = type; }
+
+		@Override public String getTypeShort() { return typeShort; }
+
+		@Override public void setTypeShort(String typeShort) { this.typeShort = typeShort; }
+
+		@Override public String getTypeShortTitleCase() { return typeShortTitleCase; }
+
+		@Override public void setTypeShortTitleCase(String typeShortTitleCase) { this.typeShortTitleCase = typeShortTitleCase; }
+
+		@Override public String getObjectType() { return objectType; }
+
+		@Override public void setObjectType(String objectType) { this.objectType = objectType; }
 
 
 		@Override

@@ -1,8 +1,5 @@
 package twg2.template.codeTemplate;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * @author TeamworkGuy2
  * @since 2015-8-28
@@ -10,13 +7,41 @@ import lombok.Setter;
 public interface GenericTypeInfo extends HasType, HasTypeName {
 
 	public static class Impl implements GenericTypeInfo {
-		public @Getter @Setter String type;
-		public @Getter @Setter String typeShort;
-		public @Getter @Setter String typeShortTitleCase;
-		public @Getter @Setter String objectType;
-		public @Getter @Setter Class<?> typeClass;
-		public @Getter @Setter boolean generic;
-		public @Getter @Setter boolean primitive;
+		public String type;
+		public String typeShort;
+		public String typeShortTitleCase;
+		public String objectType;
+		public Class<?> typeClass;
+		public boolean generic;
+		public boolean primitive;
+
+		@Override public String getType() { return type; }
+
+		@Override public void setType(String type) { this.type = type; }
+
+		@Override public String getTypeShort() { return typeShort; }
+
+		@Override public void setTypeShort(String typeShort) { this.typeShort = typeShort; }
+
+		@Override public String getTypeShortTitleCase() { return typeShortTitleCase; }
+
+		@Override public void setTypeShortTitleCase(String typeShortTitleCase) { this.typeShortTitleCase = typeShortTitleCase; }
+
+		@Override public String getObjectType() { return objectType; }
+
+		@Override public void setObjectType(String objectType) { this.objectType = objectType; }
+
+		@Override public Class<?> getTypeClass() { return typeClass; }
+
+		@Override public void setTypeClass(Class<?> typeClass) { this.typeClass = typeClass; }
+
+		@Override public boolean isGeneric() { return generic; }
+
+		@Override public void setGeneric(boolean generic) { this.generic = generic; }
+
+		@Override public boolean isPrimitive() { return primitive; }
+
+		@Override public void setPrimitive(boolean primitive) { this.primitive = primitive; }
 
 
 		@Override
